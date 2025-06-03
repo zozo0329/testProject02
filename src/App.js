@@ -1,23 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-
+import AppStyle from "./App.module.css";
+import Form from "./Components/Form/Form";
 function App() {
+  const dataHandler = (userData) => {
+    console.log("USERDATA: ", userData);
+    // Do something with userData
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div clasName={AppStyle}>
+      <Form dataHandler={dataHandler} />
     </div>
   );
 }

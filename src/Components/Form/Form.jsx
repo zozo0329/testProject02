@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormStyle from "./Form.module.css";
 import MouseClick from "./Sound/mouse-click-290204.mp3";
 import OySound from "./Sound/oi-85782.mp3";
-const Form = ({ dataHandler }) => {
+const Form = ({ dataHandler, setIsOn }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const nameChangeHandler = (e) => {
@@ -21,6 +21,7 @@ const Form = ({ dataHandler }) => {
       id: Math.random().toString(),
     };
     dataHandler(userData);
+    setIsOn(true);
     // CLEANER
     setName("");
     setAge("");

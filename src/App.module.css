@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+h1 {
+  color: lime;
+  text-align: center;
+  margin: 0px;
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: default;
+}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import FormStyle from "./Form.module.css";
+import MouseClick from "./Sound/mouse-click-290204.mp3";
+import OySound from "./Sound/oi-85782.mp3";
 const Form = ({ dataHandler }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -23,6 +25,14 @@ const Form = ({ dataHandler }) => {
     setName("");
     setAge("");
   };
+  const mouseClickHandler = () => {
+    const audio = new Audio(MouseClick);
+    audio.play();
+  };
+  const MouseEnterHandler = () => {
+    const whenHover = new Audio(OySound);
+    whenHover.play();
+  };
   return (
     <div className={FormStyle.Hero}>
       <form onSubmit={submitHandler}>
@@ -41,7 +51,13 @@ const Form = ({ dataHandler }) => {
           />
         </div>
         <div className={FormStyle.btns}>
-          <button type="submit">Add</button>
+          <button
+            type="submit"
+            onClick={mouseClickHandler}
+            onMouseEnter={MouseEnterHandler}
+          >
+            Add
+          </button>
         </div>
       </form>
     </div>

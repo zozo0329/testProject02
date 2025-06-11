@@ -9,7 +9,7 @@ const OutputList = ({ userInfo }) => {
           {userInfo.map((value) => {
             return (
               <li key={value.id}>
-                {value.name}, {value.age} y/o
+                Name: {value.name}, {value.age} Years Old
               </li>
             );
           })}

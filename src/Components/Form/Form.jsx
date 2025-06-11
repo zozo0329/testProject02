@@ -15,6 +15,12 @@ const Form = ({ dataHandler, setIsOn }) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
+    if (name.trim().length === 0 || age.trim().length === 0) {
+      return;
+    }
+    if (+age < 1) {
+      return;
+    }
     const userData = {
       name,
       age,

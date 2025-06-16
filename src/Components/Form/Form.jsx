@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import FormStyle from "./Form.module.css";
 import MouseClick from "./Sound/mouse-click-290204.mp3";
-import OySound from "./Sound/oi-85782.mp3";
+import Card from "../UI/Card/Card";
+import Button from "../UI/Button/Button";
+import ErrorModal from "../UI/ErrorModal/ErrorModal";
 const Form = ({ dataHandler, setIsOn }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
+  const [error, setError] = useState();
+  const confirmHandler = () => {
+    console.log("BACKDROP CLICKED");
+    setError();
+  };
   const nameChangeHandler = (e) => {
     setName(e.target.value);
     console.log("NAME: ", name);
@@ -15,10 +22,22 @@ const Form = ({ dataHandler, setIsOn }) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if (name.trim().length === 0 || age.trim().length === 0) {
+    if (name.trim().length === 0) {
+      setError({ title: "Error", message: "Please Enter name" });
+      return;
+    }
+    if (+age.trim().length === 0) {
+      setError({
+        title: "No Age",
+        message: "Please Enter Age",
+      });
       return;
     }
     if (+age < 1) {
+      setError({
+        title: "Invalid Text",
+        message: "Invalid Age",
+      });
       return;
     }
     const userData = {
@@ -36,12 +55,15 @@ const Form = ({ dataHandler, setIsOn }) => {
     const audio = new Audio(MouseClick);
     audio.play();
   };
-  const MouseEnterHandler = () => {
-    const whenHover = new Audio(OySound);
-    whenHover.play();
-  };
   return (
-    <div className={FormStyle.Hero}>
+    <Card className={FormStyle.Hero}>
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          confirmHandler={confirmHandler}
+        />
+      )}
       <form onSubmit={submitHandler}>
         <div className={FormStyle.Inputs}>
           <input
@@ -58,16 +80,12 @@ const Form = ({ dataHandler, setIsOn }) => {
           />
         </div>
         <div className={FormStyle.btns}>
-          <button
-            type="submit"
-            onClick={mouseClickHandler}
-            onMouseEnter={MouseEnterHandler}
-          >
+          <Button type="submit" onClick={mouseClickHandler}>
             Add
-          </button>
+          </Button>
         </div>
       </form>
-    </div>
+    </Card>
   );
 };
 
